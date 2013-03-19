@@ -123,6 +123,12 @@ class Minesweeper
         File.open("top_times.txt", "a") do |f|
           f.puts total_time
         end
+        top_times = []
+        File.foreach("top_times.txt") do |line|
+          top_times << line.chomp + " seconds"
+        end
+        top_times = top_times[0..10].sort
+        puts "The top times are #{top_times}"
       end
 
       puts "You suck!" if @game_status == "lose"
